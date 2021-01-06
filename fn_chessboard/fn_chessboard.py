@@ -1,3 +1,4 @@
+from oop_chessboard.errors.invalid_side_error import InvalidSideError
 
 PROGRAM_OPTIONS = """
     Please enter one of the following options:
@@ -23,8 +24,8 @@ def main():
 
     while selected_option != 'q':
         try:
-            height = validate_board(input('Enter height of chess board: ').strip())
-            width = validate_board(input('Enter width of chess board: ').strip())
+            height = validate_side(input('Enter height of chess board: ').strip())
+            width = validate_side(input('Enter width of chess board: ').strip())
         except InvalidSideError as error:
             print(error)
         else:
@@ -33,7 +34,7 @@ def main():
             selected_option = input(MENU_PROMPT_DURING_PROGRAM).strip().lower()
 
 
-def validate_board(side: str) -> str:
+def validate_side(side: str) -> str:
     """
     invalid -1, 0, adbc, ' '
 
@@ -59,10 +60,6 @@ def building_board(height: str, width: str) -> str:
             result += '*' if row % 2 == cell % 2 else ' '
         result += '\n'
     return result
-
-
-class InvalidSideError(ValueError):
-    pass
 
 
 if __name__ == "__main__":
