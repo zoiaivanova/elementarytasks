@@ -13,7 +13,7 @@ class TicketRange:
     Second. get_valid_tickets, creates generator
 
     """
-    def __init__(self, min_number, max_number):
+    def __init__(self, min_number: Ticket, max_number: Ticket):
         """
         :param min_number: instance of Ticket for the start of ticket range
         :param max_number: instance of Ticket for the end of ticket range

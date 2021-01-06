@@ -16,7 +16,7 @@ def convert_to_str_ticket_with_prepended_zeros(obj) -> callable:
 
 
 def validate_ticket(obj) -> callable:
-    def wrapper(number):
+    def wrapper(number: str):
         """
         :return: return number if number is 6-digit string otherwise raise InvalidTicketError
         """

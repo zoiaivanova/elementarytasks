@@ -1,8 +1,9 @@
 from oop_lucky_tickets.errors.invalid_ticket_range_error import InvalidTicketRangeError
+from oop_lucky_tickets.models.ticket import Ticket
 
 
 def validate_ticket_range(obj) -> callable:
-    def wrapper(min_number, max_number):
+    def wrapper(min_number: Ticket, max_number: Ticket):
         """
         :return: min_number and max_number if min_number is less or equals to max_number
         otherwise raise InvalidTicketRangeError
