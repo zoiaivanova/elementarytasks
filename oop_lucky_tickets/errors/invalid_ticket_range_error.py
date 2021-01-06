@@ -1,0 +1,2 @@
+class InvalidTicketRangeError(ValueError):
+    pass
