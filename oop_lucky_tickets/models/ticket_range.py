@@ -18,19 +18,16 @@ class TicketRange:
         :param min_number: instance of Ticket for the start of ticket range
         :param max_number: instance of Ticket for the end of ticket range
         """
-        self.min_number = min_number
-        self.max_number = max_number
+        self._min_number = min_number
+        self._max_number = max_number
 
-    def __repr__(self):
-        return f'Ticket range from {self.min_number} to {self.max_number}'
-
-    def get_valid_tickets(self) -> Generator:
+    def __get_valid_tickets(self) -> Generator:
         """
         :return: generator of ticket instances in the given range
         """
-        return (Ticket(number) for number in range(int(self.min_number), int(self.max_number) + 1))
+        return (Ticket(number) for number in range(int(self._min_number), int(self._max_number) + 1))
 
-    def compete_lucky_ticket_counting_functions(self) -> str:
+    def __repr__(self) -> str:
         """
         :return: string of naming the winner while comparing two functions
         and getting the number of times each function had lucky tickets
@@ -38,7 +35,7 @@ class TicketRange:
         simple_length = 0
         complex_length = 0
         complex_alternative_length = 0
-        for ticket in self.get_valid_tickets():
+        for ticket in self.__get_valid_tickets():
             if ticket.is_simple_lucky:
                 simple_length += 1
             if ticket.is_complex_lucky:

@@ -30,8 +30,7 @@ def main():
         try:
             min_number = Ticket(input('Enter min ticket number: ').strip())
             max_number = Ticket(input('Enter max ticket number: ').strip())
-            ticket_range = TicketRange(min_number, max_number)
-            print(ticket_range.compete_lucky_ticket_counting_functions())
+            print(TicketRange(min_number, max_number))
         except (InvalidTicketError, InvalidTicketRangeError) as error:
             print(error)
         finally:

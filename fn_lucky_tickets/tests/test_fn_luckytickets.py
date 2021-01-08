@@ -42,7 +42,7 @@ class TestGetValidTickets(TestCase):
         self.assertTrue(isinstance(get_valid_tickets('000111', '000113'), Generator))
 
     def test_returns_one_ticket_if_min_and_max_equal(self):
-        self.assertEqual(next(get_valid_tickets('111111', '111111')), '111111')
+        self.assertEqual(list(get_valid_tickets('111111', '111111')), ['111111'])
 
 
 class TestIsSimpleLucky(TestCase):

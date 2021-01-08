@@ -1,3 +1,4 @@
+
 from oop_lucky_tickets.errors.invalid_ticket_range_error import InvalidTicketRangeError
 from oop_lucky_tickets.models.ticket import Ticket
 
