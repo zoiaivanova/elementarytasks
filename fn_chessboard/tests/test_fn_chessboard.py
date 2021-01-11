@@ -1,29 +1,28 @@
 from unittest import TestCase
 
+from parameterized import parameterized
+
 from fn_chessboard.fn_chessboard import InvalidSideError, validate_side, building_board
 
 
 class TestValidateSide(TestCase):
-    def test_raises_error_if_not_valid_side(self):
-        invalid_sides = ['-1', '0', 'abcd', ' ', '']
+    @parameterized.expand(['-1', '0', 'abcd', ' ', ''])
+    def test_raises_error_if_not_valid_side(self, side):
         with self.assertRaises(InvalidSideError):
-            for side in invalid_sides:
-                validate_side(side)
+            validate_side(side)
 
-    def test_returns_side_if_valid(self):
-        for side in ['1', '5', '20']:
-            self.assertEqual(validate_side(side), side)
+    @parameterized.expand(['1', '5', '20'])
+    def test_returns_side_if_valid(self, side):
+        actual = validate_side(side)
+        self.assertEqual(actual, side)
 
 
 class TestChessboard(TestCase):
-    def test_building_board(self):
-        expected_boards = [
-            '*\n',
-            '* * *\n * * \n* * *\n',
-            '* * * \n * * *\n* * * \n * * *\n* * * \n * * *\n',
-            '* * * * \n * * * *\n* * * * \n'
-        ]
-        sides_list = [('1', '1'), ('3', '5'), ('6', '6'), ('3', '8')]
-
-        for sides, board in zip(sides_list, expected_boards):
-            self.assertEqual(building_board(*sides), board)
+    @parameterized.expand([
+        ('1', '1', '*\n'),
+        ('3', '5', '* * *\n * * \n* * *\n'),
+        ('6', '6', '* * * \n * * *\n* * * \n * * *\n* * * \n * * *\n'),
+        ('3', '8', '* * * * \n * * * *\n* * * * \n')
+    ])
+    def test_building_board(self, height, width, expected_board):
+        self.assertEqual(building_board(height, width), expected_board)
