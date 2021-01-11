@@ -20,6 +20,10 @@ class TicketRange:
         """
         self._min_number = min_number
         self._max_number = max_number
+        self._simple_len = 0
+        self._complex_len = 0
+        self._complex_alternative_len = 0
+        self._count_lucky_tickets_methods()
 
     def __get_valid_tickets(self) -> Generator:
         """
@@ -29,31 +33,30 @@ class TicketRange:
 
     def __repr__(self) -> str:
         """
-        :return: string of naming the winner while comparing two functions
-        and getting the number of times each function had lucky tickets
+        :return: string of naming the winner
         """
-        simple_length = 0
-        complex_length = 0
-        complex_alternative_length = 0
-        for ticket in self.__get_valid_tickets():
-            if ticket.is_simple_lucky:
-                simple_length += 1
-            if ticket.is_complex_lucky:
-                complex_length += 1
-            if ticket.is_complex_lucky_alternative:
-                complex_alternative_length += 1
-
         result = f"""
-        Simple method ran {simple_length} times, 
-        complex method ran {complex_length} times,
-        alternative complex method ran {complex_alternative_length} times.
+        Simple method ran {self._simple_len} times, 
+        complex method ran {self._complex_len} times,
+        alternative complex method ran {self._complex_alternative_len} times.
         """
-
-        if simple_length > complex_length and simple_length > complex_alternative_length:
+        if self._simple_len > self._complex_len and self._simple_len > self._complex_alternative_len:
             return f'Simple method has won: {result}'
-        elif complex_length > simple_length and complex_length > complex_alternative_length:
+        elif self._complex_len > self._simple_len and self._complex_len > self._complex_alternative_len:
             return f'Complex method has won: {result}'
-        elif complex_alternative_length > simple_length and complex_alternative_length > complex_length:
+        elif self._complex_alternative_len > self._simple_len and self._complex_alternative_len > self._complex_len:
             return f'Alternative complex method has won: {result}'
         else:
             return f'It is a draw: {result}'
+
+    def _count_lucky_tickets_methods(self) -> None:
+        """
+        increment a counter variable when encounter a lucky ticket in corresponding function
+        """
+        for ticket in self.__get_valid_tickets():
+            if ticket.is_simple_lucky:
+                self._simple_len += 1
+            if ticket.is_complex_lucky:
+                self._complex_len += 1
+            if ticket.is_complex_lucky_alternative:
+                self._complex_alternative_len += 1

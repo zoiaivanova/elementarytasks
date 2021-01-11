@@ -1,5 +1,7 @@
 from unittest import TestCase
 
+from parameterized import parameterized
+
 from oop_lucky_tickets.errors.invalid_ticket_error import InvalidTicketError
 from oop_lucky_tickets.errors.invalid_ticket_range_error import InvalidTicketRangeError
 from oop_lucky_tickets.models.ticket import Ticket
@@ -7,51 +9,53 @@ from oop_lucky_tickets.models.ticket_range import TicketRange
 
 
 class TestTicketInitializer(TestCase):
-    def test_raises_error_if_not_valid_ticket(self):
-        invalid_tickets = ['444', '11111111', 'asd', '13fs', '-44222', '-444444', '11111.1', '111111.0']
+    @parameterized.expand(['444', '11111111', 'asd', '13fs', '-44222', '-444444', '11111.1', '111111.0'])
+    def test_raises_error_if_ticket_is_invalid(self, ticket):
         with self.assertRaises(InvalidTicketError):
-            for ticket in invalid_tickets:
-                Ticket(ticket)
+            Ticket(ticket)
 
-    def test_returns_ticket_if_valid(self):
-        for ticket in ['012345', '546777', '000011']:
-            self.assertEqual(Ticket(ticket)._number, ticket)
+    @parameterized.expand(['012345', '546777', '000011'])
+    def test_returns_ticket_if_valid(self, ticket):
+        actual = Ticket(ticket)._number
+        self.assertEqual(actual, ticket)
 
-    def test_returns_ticket_with_prepended_zeros(self):
-        self.assertEqual(Ticket(1)._number, '000001')
-
-    def test_returns_ticket_converted_to_str_without_prepended_zeros(self):
-        self.assertEqual(Ticket(999999)._number, '999999')
+    @parameterized.expand([
+        (1, '000001'),
+        (999999, '999999')
+    ])
+    def test_returns_ticket_with_prepended_zeros(self, int_ticket_number, result):
+        actual = Ticket(int_ticket_number)._number
+        self.assertEqual(actual, result)
 
 
 class TestIsSimpleLucky(TestCase):
-    def test_valid_values(self):
-        for ticket in ['425650', '000000', '112211', '111111']:
-            self.assertTrue(Ticket(ticket).is_simple_lucky)
+    @parameterized.expand(['425650', '000000', '112211', '111111'])
+    def test_valid_values(self, ticket):
+        self.assertTrue(Ticket(ticket).is_simple_lucky)
 
-    def test_invalid_values(self):
-        for ticket in ['324326', '661721', '020202']:
-            self.assertFalse(Ticket(ticket).is_simple_lucky)
+    @parameterized.expand(['324326', '661721', '020202'])
+    def test_invalid_values(self, ticket):
+        self.assertFalse(Ticket(ticket).is_simple_lucky)
 
 
 class TestIsComplexLucky(TestCase):
-    def test_valid_values(self):
-        for ticket in ['202310', '000000', '487500']:
-            self.assertTrue(Ticket(ticket).is_complex_lucky)
+    @parameterized.expand(['202310', '000000', '487500'])
+    def test_valid_values(self, ticket):
+        self.assertTrue(Ticket(ticket).is_complex_lucky)
 
-    def test_invalid_values(self):
-        for ticket in ['324326', '111111', '020202']:
-            self.assertFalse(Ticket(ticket).is_complex_lucky)
+    @parameterized.expand(['324326', '111111', '020202'])
+    def test_invalid_values(self, ticket):
+        self.assertFalse(Ticket(ticket).is_complex_lucky)
 
 
 class TestIsComplexLuckyAlternative(TestCase):
-    def test_valid_values(self):
-        for ticket in ['002222', '000000', '585101']:
-            self.assertTrue(Ticket(ticket).is_complex_lucky_alternative)
+    @parameterized.expand(['002222', '000000', '585101'])
+    def test_valid_values(self, ticket):
+        self.assertTrue(Ticket(ticket).is_complex_lucky_alternative)
 
-    def test_invalid_values(self):
-        for ticket in ['202310', '111112', '425650']:
-            self.assertFalse(Ticket(ticket).is_complex_lucky_alternative)
+    @parameterized.expand(['202310', '111112', '425650'])
+    def test_invalid_values(self, ticket):
+        self.assertFalse(Ticket(ticket).is_complex_lucky_alternative)
 
 
 class TestTicketRange(TestCase):
