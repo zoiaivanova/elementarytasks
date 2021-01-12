@@ -1,0 +1,8 @@
+{
+  "is_simple_valid": ["425650", "000000", "112211", "111111"],
+  "is_simple_invalid": ["324326", "661721", "020202"],
+  "is_complex_valid": ["202310", "000000", "487500"],
+  "is_complex_invalid": ["324326", "111111", "020202"],
+  "is_complex_alternative_valid": ["002222", "000000", "585101"],
+  "is_complex_alternative_invalid": ["202310", "111112", "425650"]
+}

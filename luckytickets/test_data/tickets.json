@@ -1,0 +1,15 @@
+{
+  "invalid_tickets": ["444", "11111111", "asd", "13fs", "-44222", "-444444", "11111.1", "111111.0"],
+  "valid_tickets": ["012345", "546777", "000011"],
+  "tickets_with_prepended_zeros": [
+        [1, "000001"],
+        [999999, "999999"]
+    ],
+  "valid_ticket_range": [
+        ["valid ticket range without prepended zeros", "111111", "111113", ["111111", "111112", "111113"]],
+        ["valid ticket range with prepended zeros", "000111", "000113", ["000111", "000112", "000113"]],
+        ["valid ticket range for one value", "111111", "111111", ["111111"]]
+
+    ],
+  "for_generator": [["000111", "000113"]]
+}

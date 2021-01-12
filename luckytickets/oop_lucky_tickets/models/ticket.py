@@ -1,4 +1,4 @@
-from oop_lucky_tickets.decorators.ticket import convert_to_str_ticket_with_prepended_zeros, validate_ticket
+from luckytickets.oop_lucky_tickets.decorators.ticket import convert_to_str_ticket_with_prepended_zeros, validate_ticket
 
 
 @convert_to_str_ticket_with_prepended_zeros

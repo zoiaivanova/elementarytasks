@@ -1,7 +1,7 @@
 from typing import Generator
 
-from oop_lucky_tickets.decorators.ticket_range import validate_ticket_range
-from oop_lucky_tickets.models.ticket import Ticket
+from luckytickets.oop_lucky_tickets.decorators.ticket_range import validate_ticket_range
+from luckytickets.oop_lucky_tickets.models.ticket import Ticket
 
 
 @validate_ticket_range

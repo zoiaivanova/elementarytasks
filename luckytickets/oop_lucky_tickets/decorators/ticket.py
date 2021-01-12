@@ -1,4 +1,4 @@
-from oop_lucky_tickets.errors.invalid_ticket_error import InvalidTicketError
+from errors import InvalidTicketError
 
 
 def convert_to_str_ticket_with_prepended_zeros(obj) -> callable:
