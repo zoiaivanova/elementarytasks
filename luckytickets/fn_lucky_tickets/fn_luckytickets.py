@@ -10,7 +10,7 @@ def validate_ticket(ticket: str) -> str:
     :return: raise ValueError if ticket isn't 6-digit string otherwise return ticket
     """
     if not (len(ticket) == 6 and ticket.isdigit()):
-        raise InvalidTicketError(f'Your value {ticket} is invalid, a ticket should consist of 6 digits')
+        raise InvalidTicketError(f'\nYour value {ticket} is invalid, a ticket should consist of 6 digits')
     return ticket
 
 
@@ -21,7 +21,7 @@ def validate_ticket_range(min_number: str, max_number: str) -> None:
     :return: raise ValueError if min number is greater than max number otherwise None
     """
     if int(min_number) > int(max_number):
-        raise InvalidTicketRangeError('You entered invalid range of tickets: your min ticket is greater than max ticket')
+        raise InvalidTicketRangeError('\nYou entered invalid range of tickets: your min ticket is greater than max ticket')
 
 
 def is_simple_lucky(ticket: str) -> bool:

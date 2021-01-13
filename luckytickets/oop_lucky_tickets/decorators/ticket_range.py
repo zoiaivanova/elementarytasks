@@ -9,7 +9,7 @@ def validate_ticket_range(obj) -> callable:
         otherwise raise InvalidTicketRangeError
         """
         if int(min_number) > int(max_number):
-            raise InvalidTicketRangeError('You entered invalid range of tickets:'
+            raise InvalidTicketRangeError('\nYou entered invalid range of tickets:'
                                           ' your min ticket is greater than max ticket')
         return obj(min_number, max_number)
     return wrapper

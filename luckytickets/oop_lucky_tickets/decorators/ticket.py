@@ -21,6 +21,6 @@ def validate_ticket(obj) -> callable:
         :return: return number if number is 6-digit string otherwise raise InvalidTicketError
         """
         if not (len(number) == 6 and number.isdigit()):
-            raise InvalidTicketError(f'Your value {number} is invalid, a ticket should consist of 6 digits')
+            raise InvalidTicketError(f'\nYour value {number} is invalid, a ticket should consist of 6 digits')
         return obj(number)
     return wrapper
