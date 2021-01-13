@@ -2,5 +2,9 @@ class InvalidTicketError(ValueError):
     pass
 
 
-class InvalidTicketRangeError(Exception):
+class InvalidTicketRangeError(ValueError):
+    pass
+
+
+class InvalidSideError(ValueError):
     pass

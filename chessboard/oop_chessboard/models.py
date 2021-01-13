@@ -1,4 +1,13 @@
-from oop_chessboard.models.side import Side
+from chessboard.oop_chessboard.decorators import validate_side
+
+
+@validate_side
+class Side:
+    def __init__(self, side):
+        self._value = side
+
+    def __int__(self):
+        return int(self._value)
 
 
 class Chessboard:

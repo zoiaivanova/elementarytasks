@@ -13,4 +13,4 @@ You need to enter minimum and maximum number of tickets.
 The output of the program will be the info about method that has won and the number of lucky tickets in range of
 your min and max number. {PROGRAM_OPTIONS}
 """
-MENU_PROMPT_DURING_PROGRAM = f'Would you like to run this program again? {PROGRAM_OPTIONS}'
+MENU_PROMPT_DURING_PROGRAM = f'\nWould you like to run this program again? {PROGRAM_OPTIONS}'

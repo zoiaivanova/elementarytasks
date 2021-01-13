@@ -1,11 +1,14 @@
 from interfaces import ConsoleInterface
 from luckytickets.fn_lucky_tickets.main import main as fn_luckytickets
 from luckytickets.oop_lucky_tickets.main import main as oop_luckytickets
+from chessboard.fn_chessboard.main import main as fn_chessboard
+from chessboard.oop_chessboard.main import main as oop_chessboard
+
 
 MENU_PROMPT_START = """
 There are 4 tasks to choose:
-1) luckytickets in OOP style
-2) luckytickets in FN style
+1) lucky tickets in OOP style
+2) lucky tickets in FN style
 3) chessboard in OOP style
 4) chessboard in FN style
 
@@ -15,9 +18,10 @@ Please enter one of the following options:
 - 'q' to quit\n
 """
 TASKS = {
-    '1': fn_luckytickets,
-    '2': oop_luckytickets
-
+    '1': oop_luckytickets,
+    '2': fn_luckytickets,
+    '3': oop_chessboard,
+    '4': fn_chessboard
 }
 
 
